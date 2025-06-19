@@ -16,7 +16,7 @@ def get_dataloader(args):
     dataloader_train = data.DataLoader(dataset_train, batch_size=args.batch_size, shuffle=True, num_workers=int(args.threads))
     
     dataset_test = RiceDataset(image_paths=args.test, transform=get_transform('test'))
-    dataloader_test = data.DataLoader(dataset_test, batch_size=args.test_batch_size, shuffle=False, num_workers=int(args.threads))
+    dataloader_test = data.DataLoader(dataset_test, batch_size=args.batch_size, shuffle=False, num_workers=int(args.threads))
     
     return dataloader_train, dataloader_test
 
@@ -24,6 +24,7 @@ if __name__ == "__main__":
     parsers = argparse.ArgumentParser(description='Base Fine-Grained SBIR model')
     parsers.add_argument('--train', type=str, default='/kaggle/input/rice-dataset/Rice_dataset/train_smp')
     parsers.add_argument('--test', type=str, default='/kaggle/input/rice-dataset/Rice_dataset/pred_img')
+    parsers.add_argument('--batch_size', type=int, default=64)
     
     args = parsers.parse_args()
     dataloader_train, dataloader_test = get_dataloader(args=args)

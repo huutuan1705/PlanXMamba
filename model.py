@@ -22,7 +22,7 @@ class PatchEmbedding(nn.Module):
         return self.proj(x)  # shape: (B, num_patches, emb_size)
     
 class MambaBlock(nn.Module):
-    def __init__(self, emb_size=16, d_state=64, d_conv=4, expand=2):
+    def __init__(self, emb_size=16, d_state=64, d_conv=4, expand=4):
         super().__init__()
         self.norm = nn.LayerNorm(emb_size)
         self.mamba = Mamba2(

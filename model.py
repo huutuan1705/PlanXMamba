@@ -53,7 +53,7 @@ class PlantXMamba(nn.Module):
         self.vgg_block = nn.Sequential(*list(vgg.features[:10]))
         self.inception = InceptionBlock(in_channels=128)
         self.patch_embed = PatchEmbedding(in_channels=384, patch_size=patch_size, emb_size=emb_size)
-        self.transformer = nn.Sequential(*[MambaBlock(emb_size=emb_size, d_state=64, d_conv=4, expand=2) for _ in range(num_blocks)])
+        self.transformer = nn.Sequential(*[MambaBlock(emb_size=emb_size, d_state=64, d_conv=4, expand=4) for _ in range(num_blocks)])
         self.norm = nn.LayerNorm(emb_size)
         self.global_pool = nn.AdaptiveAvgPool1d(1)
         self.classifier = nn.Linear(emb_size, num_classes)

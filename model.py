@@ -3,7 +3,7 @@ import torch.nn as nn
 import torchvision.models as models
 from torchvision.models import VGG16_Weights
 
-from mamba_ssm import Mamba2
+from mamba_ssm.modules.mamba2 import Mamba2
 from plan_mamba.cnn import InceptionBlock
 
 class PatchEmbedding(nn.Module):

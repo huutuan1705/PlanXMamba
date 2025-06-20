@@ -12,10 +12,10 @@ from plan_mamba.train import train_model
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 def get_dataloader(args):
-    dataset_train = RiceDataset(image_paths=args.train, transform=get_transform('train'))
+    dataset_train = RiceDataset(image_dir=args.train, transform=get_transform('train'))
     dataloader_train = data.DataLoader(dataset_train, batch_size=args.batch_size, shuffle=True, num_workers=4)
     
-    dataset_test = RiceDataset(image_paths=args.test, transform=get_transform('test'))
+    dataset_test = RiceDataset(image_dir=args.test, transform=get_transform('test'))
     dataloader_test = data.DataLoader(dataset_test, batch_size=args.batch_size, shuffle=False, num_workers=4)
     
     return dataloader_train, dataloader_test

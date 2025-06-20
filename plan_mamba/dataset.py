@@ -1,10 +1,15 @@
+import os
 from torch.utils.data import Dataset
 from PIL import Image
-import os
 
 class RiceDataset(Dataset):
-    def __init__(self, image_paths, transform=None):
-        self.image_paths = image_paths
+    def __init__(self, image_dir, transform=None):
+        self.image_dir = image_dir
+        self.image_paths = [
+            os.path.join(image_dir, fname)
+            for fname in os.listdir(image_dir)
+            if fname.lower().endswith(".jpg")
+        ]
         self.transform = transform
         self.label_map = {
             '1': 0,
